@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chrome Theme Maker</title>
+  <!-- Set Favicon -->
+  <link rel="icon" href="favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+  <!-- Include JSZip library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js" defer></script>
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Chrome Theme Maker</h1>
+      <button onclick="createAndDownloadRAR()" class="download-btn">Pack and Download</button>
+    </header>
+
+    <div class="editor">
+      <div class="settingsPanel">
+        <label class="option">
+          Theme name
+          <input type="text" id="nameInput" value="My Theme">
+        </label>
+        <label class="option">
+          Image
+          <i class="bi bi-file-earmark-plus"></i>
+          <input type="file" id="imageInput" accept="image/*">
+        </label>
+        <label class="option">
+          Background
+          <input type="color" value="#ffffff" id="backgroundColorInput">
+        </label>
+        <label class="option">
+          Frame
+          <input type="color" value="#dddddd" id="frameColorInput">
+        </label>
+        <label class="option">
+          Text
+          <input type="color" value="#333333" id="textColorInput">
+        </label>
+      </div>
+
+      <div class="themePreview">
+        <img src="theme-preview.png">
+      </div>
+    </div>
+  </div>
+</body>
+</html>
