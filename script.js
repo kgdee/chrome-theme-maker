@@ -5,7 +5,7 @@ const imageInput = document.getElementById("imageInput")
 const backgroundColorInput = document.getElementById("backgroundColorInput")
 const frameColorInput = document.getElementById("frameColorInput")
 const textColorInput = document.getElementById("textColorInput")
-const themePreview = document.querySelector("theme-preview")
+const themePreview = document.querySelector(".theme-preview")
 
 function createManifestData() {
   let manifestData = {
