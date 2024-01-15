@@ -8,6 +8,10 @@ const textColorInput = document.getElementById("textColorInput")
 const themePreview = document.querySelector(".theme-preview")
 
 function createManifestData() {
+  const frameColor = hexToRGB(frameColorInput.value)
+  const backgroundColor = hexToRGB(backgroundColorInput.value)
+  const textColor = hexToRGB(textColorInput.value)
+
   let manifestData = {
     "name": nameInput.value,
     "version": "1.0",
@@ -16,17 +20,17 @@ function createManifestData() {
     "theme": {
       "images": { "theme_ntp_background": "images/theme_ntp_background.jpeg" },
       "colors": {
-        "frame": hexToRGBA(frameColorInput.value),
-        "toolbar": hexToRGBA(backgroundColorInput.value),
-        "tab_text": hexToRGBA(textColorInput.value),
-        "tab_background_text": hexToRGBA(textColorInput.value, 0.8),
-        "bookmark_text": hexToRGBA(textColorInput.value),
-        "ntp_background": hexToRGBA(backgroundColorInput.value),
-        "ntp_text": hexToRGBA(textColorInput.value),
+        "frame": [...frameColor, 1],
+        "toolbar": [...backgroundColor, 1],
+        "tab_text": [...textColor, 1],
+        "tab_background_text": [...textColor, 0.8],
+        "bookmark_text": [...textColor, 1],
+        "ntp_background": [...backgroundColor, 1],
+        "ntp_text": [...textColor, 1],
         "ntp_link": [6,55,116],
         "button_background": [0,0,0,0]
       },
-      "tints": { "buttons": hexToRGBA(textColorInput.value) },
+      "tints": { "buttons": normalizedRGB(textColor) },
       "properties": { "ntp_background_alignment": "top", "ntp_background_repeat": "no-repeat" }
     }
   }
@@ -69,7 +73,7 @@ function createAndDownloadRAR() {
 
 
 
-function hexToRGBA(hex, a) {
+function hexToRGB(hex) {
   // Remove the hash if present
   hex = hex.replace(/^#/, '');
 
@@ -79,9 +83,16 @@ function hexToRGBA(hex, a) {
   const g = (bigint >> 8) & 255;
   const b = bigint & 255;
 
-  return [r,g,b,(a || 1)]
+  return [r,g,b]
 }
 
+function normalizedRGB(rgb) {
+  const r = rgb.r / 255
+  const g = rgb.g / 255
+  const b = rgb.b / 255
+
+  return [r,g,b]
+}
 
 
 function updateThemePreview() {
