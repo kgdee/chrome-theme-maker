@@ -30,7 +30,7 @@ function createManifestData() {
         "ntp_link": [6,55,116],
         "button_background": [0,0,0,0]
       },
-      "tints": { "buttons": normalizedRGB(textColor) },
+      "tints": { "buttons": rgbToHsl(textColor) },
       "properties": { "ntp_background_alignment": "top", "ntp_background_repeat": "no-repeat" }
     }
   }
@@ -72,29 +72,6 @@ function createAndDownloadRAR() {
 }
 
 
-
-function hexToRGB(hex) {
-  // Remove the hash if present
-  hex = hex.replace(/^#/, '');
-
-  // Parse the individual RGB components
-  const bigint = parseInt(hex, 16);
-  const r = (bigint >> 16) & 255;
-  const g = (bigint >> 8) & 255;
-  const b = bigint & 255;
-
-  return [r,g,b]
-}
-
-function normalizedRGB(rgb) {
-  const r = rgb[0] / 255
-  const g = rgb[1] / 255
-  const b = rgb[2] / 255
-
-  return [r,g,b]
-}
-
-
 function updateThemePreview() {
   const message = {
     backgroundColor: backgroundColorInput.value,
@@ -116,4 +93,60 @@ function handleImageInput() {
 
   // Read the file as data URL
   reader.readAsDataURL(imageInput.files[0]);
+}
+
+
+
+
+
+
+function hexToRGB(hex) {
+  // Remove the hash if present
+  hex = hex.replace(/^#/, '');
+
+  // Parse the individual RGB components
+  const bigint = parseInt(hex, 16);
+  const r = (bigint >> 16) & 255;
+  const g = (bigint >> 8) & 255;
+  const b = bigint & 255;
+
+  return [r,g,b]
+}
+
+function rgbToHsl(rgb) {
+  // Normalize RGB values
+  const r = rgb[0] / 255;
+  const g = rgb[1] / 255;
+  const b = rgb[2] / 255;
+
+  const cmax = Math.max(r, g, b);
+  const cmin = Math.min(r, g, b);
+
+  // Calculate lightness
+  const l = (cmax + cmin) / 2;
+
+  // Calculate saturation
+  let s;
+  if (cmax === cmin) {
+      s = 0;
+  } else {
+      s = (cmax - cmin) / (1 - Math.abs(2 * l - 1));
+  }
+
+  // Calculate hue
+  let h;
+  if (cmax === cmin) {
+      h = 0;
+  } else if (cmax === r) {
+      h = 60 * (((g - b) / (cmax - cmin)) % 6);
+  } else if (cmax === g) {
+      h = 60 * (((b - r) / (cmax - cmin)) + 2);
+  } else if (cmax === b) {
+      h = 60 * (((r - g) / (cmax - cmin)) + 4);
+  }
+
+  // Ensure hue is non-negative
+  h = (h + 360) % 360;
+
+  return [h, s, l];
 }
