@@ -26,7 +26,7 @@ function createManifestData() {
         "ntp_link": [6,55,116],
         "button_background": [0,0,0,0]
       },
-      "tints": { "buttons": [0,0,0.93] },
+      "tints": { "buttons": hexToRGBA(textColorInput.value) },
       "properties": { "ntp_background_alignment": "top", "ntp_background_repeat": "no-repeat" }
     }
   }
