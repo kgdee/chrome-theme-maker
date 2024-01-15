@@ -62,7 +62,7 @@ body {
   gap: 25px;
 }
 
-.settingsPanel {
+.settings-panel {
   background-color: white;
   width: 300px;
   display: flex;
@@ -72,34 +72,34 @@ body {
   border-radius: 5px;
 }
 
-.settingsPanel .option {
+.settings-panel .option {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.settingsPanel .option input[type="text"] {
+.settings-panel .option input[type="text"] {
   width: 100px;
   border: 1px solid #999;
   padding: 1px;
 }
 
-.settingsPanel .option input[type="file"] {
+.settings-panel .option input[type="file"] {
   display: none;
 }
 
-.settingsPanel .option i {
+.settings-panel .option i {
   font-size: 1.25rem;
   padding: 5px;
 }
 
-.settingsPanel .option input[type="color"] {
+.settings-panel .option input[type="color"] {
   width: 30px;
   height: 30px;
 }
 
-.themePreview {
+.theme-preview {
   background-color: white;
   flex: 1;
   height: 100%;
@@ -107,7 +107,7 @@ body {
   padding: 10px;
 }
 
-.themePreview img {
+.theme-preview img {
   width: 100%;
   height: 100%;
   object-fit: cover;
