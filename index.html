@@ -28,11 +28,11 @@
         <label class="option">
           Image
           <i class="bi bi-file-earmark-plus"></i>
-          <input type="file" id="imageInput" accept="image/*">
+          <input type="file" id="imageInput" accept="image/*" oninput="handleImageInput()">
         </label>
         <label class="option">
           Background
-          <input type="color" value="#ffffff" id="backgroundColorInput">
+          <input type="color" value="#ffffff" id="backgroundColorInput" oninput="updateThemePreview()">
         </label>
         <label class="option">
           Frame
@@ -40,7 +40,7 @@
         </label>
         <label class="option">
           Text
-          <input type="color" value="#333333" id="textColorInput">
+          <input type="color" value="#333333" id="textColorInput" oninput="updateThemePreview()">
         </label>
       </div>
 

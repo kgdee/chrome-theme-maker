@@ -85,5 +85,24 @@ function hexToRGBA(hex, a) {
 
 
 function updateThemePreview() {
-  themePreview.contentWindow.postMessage({ variableName: "--frame-color", value: "black" }, 'https://kgdee.github.io')
+  const message = {
+    backgroundColor: backgroundColorInput.value,
+    frameColor: frameColorInput.value,
+    textColor: textColorInput.value
+  }
+
+  themePreview.contentWindow.postMessage(message)
+}
+
+
+const reader = new FileReader()
+reader.onload = function(event) {
+  themePreview.contentWindow.postMessage({ image: event.target.result })
+};
+
+function handleImageInput() {
+  if (imageInput.files.length <= 0) return
+
+  // Read the file as data URL
+  reader.readAsDataURL(imageInput.files[0]);
 }
