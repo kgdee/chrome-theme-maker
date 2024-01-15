@@ -5,6 +5,7 @@ const imageInput = document.getElementById("imageInput")
 const backgroundColorInput = document.getElementById("backgroundColorInput")
 const frameColorInput = document.getElementById("frameColorInput")
 const textColorInput = document.getElementById("textColorInput")
+const themePreview = document.querySelector("theme-preview")
 
 function createManifestData() {
   let manifestData = {
@@ -79,4 +80,10 @@ function hexToRGBA(hex, a) {
   const b = bigint & 255;
 
   return [r,g,b,(a || 1)]
+}
+
+
+
+function updateThemePreview() {
+  themePreview.contentWindow.postMessage({ variableName: "--frame-color", value: "black" }, 'https://kgdee.github.io')
 }

@@ -36,7 +36,7 @@
         </label>
         <label class="option">
           Frame
-          <input type="color" value="#dddddd" id="frameColorInput">
+          <input type="color" value="#dddddd" id="frameColorInput" oninput="updateThemePreview()">
         </label>
         <label class="option">
           Text
@@ -44,9 +44,7 @@
         </label>
       </div>
 
-      <div class="themePreview">
-        <img src="theme-preview.png">
-      </div>
+      <iframe class="themePreview" src="https://kgdee.github.io/browser-window/" frameborder="0"></iframe>
     </div>
   </div>
 </body>
