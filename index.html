@@ -1,56 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chrome Theme Maker</title>
-  <!-- Set Favicon -->
-  <link rel="icon" href="favicon.png" type="image/x-icon">
-  <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
-  <!-- Include JSZip library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js" defer></script>
-  <script src="script.js" defer></script>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="app container">
-    <header class="header">
-      <h2 class="title">Chrome Theme Maker</h2>
-      <button onclick="createAndDownloadRAR()" class="download-btn">Pack and Download</button>
-    </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chrome Theme Creator</title>
+    <link rel="icon" href="favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+    <!-- JSZip -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js" defer></script>
+    <!-- chroma.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chroma-js@2.4.2/chroma.min.js"></script>
+    <script src="scripts/constants.js" defer></script>
+    <script src="scripts/utils.js" defer></script>
+    <script src="scripts/main.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app container">
+      <header class="header">
+        <h2 class="title"><img src="logo.png">Chrome Theme Creator</h2>
+        <button class="theme-toggle" onclick="toggleTheme()"></button>
+      </header>
 
-    <div class="editor">
-      <div class="settings-panel">
-        <label class="option">
-          Theme name
-          <input type="text" id="nameInput" value="My Theme">
-        </label>
-        <label class="option">
-          Image
-          <i class="bi bi-file-earmark-plus"></i>
-          <input type="file" id="imageInput" accept="image/*" oninput="handleImageInput()">
-        </label>
-        <label class="option">
-          Background
-          <input type="color" value="#ffffff" id="backgroundColorInput" oninput="updateThemePreview()">
-        </label>
-        <label class="option">
-          Frame
-          <input type="color" value="#dddddd" id="frameColorInput" oninput="updateThemePreview()">
-        </label>
-        <label class="option">
-          Text
-          <input type="color" value="#333333" id="textColorInput" oninput="updateThemePreview()">
-        </label>
+      <div class="editor">
+        <div class="settings">
+          <label class="item name-input">
+            Theme name
+            <input type="text" value="My Theme" />
+          </label>
+          <label class="item image-input">
+            Background Image
+            <i class="bi bi-file-earmark-plus"></i>
+            <input type="file" class="hidden" accept="image/*" oninput="updatePreview()" />
+          </label>
+          <label class="item position-input">
+            Background position
+            <select oninput="updatePreview()">
+              <option value="center">Center</option>
+              <option value="top">Top</option>
+              <option value="bottom">Bottom</option>
+              <option value="left">Left</option>
+              <option value="right">Right</option>
+            </select>
+          </label>
+          <label class="item background-input">
+            Background color
+            <input type="color" value="#ffffff" oninput="updatePreview()" />
+          </label>
+          <label class="item frame-input">
+            Frame color
+            <input type="color" value="#dddddd" oninput="updatePreview()" />
+          </label>
+          <label class="item text-input">
+            Text color
+            <input type="color" value="#333333" oninput="updatePreview()" />
+          </label>
+
+          <button class="button" onclick="downloadRAR()">Pack and Download</button>
+        </div>
+
+        <iframe class="preview" src="https://kgdee.github.io/browser-window/" frameborder="0"></iframe>
       </div>
 
-      <iframe class="theme-preview" src="https://kgdee.github.io/browser-window/" frameborder="0"></iframe>
+      <div class="orientation-warning hidden">
+        <img src="orientation-warning.png" />
+        <p>Please rotate your device</p>
+      </div>
     </div>
-  </div>
-  
-  <div class="orientation-warning hidden">
-    <img src="orientation-warning.png">
-    <p>Please rotate your device</p>
-  </div>
-</body>
+  </body>
 </html>
